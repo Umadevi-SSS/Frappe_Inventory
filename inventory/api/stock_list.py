@@ -7,10 +7,18 @@ def get_item_stock_report(warehouse,transaction_date):
     Fetch a list of items with their current stock.
     """
     paraValues =[]
-    paraValues.append(transaction_date)
     paraValues.append(warehouse)
+    paraValues.append(warehouse)
+    paraValues.append(transaction_date)
     query = """
-         SELECT  A.item_code,  A.warehouse, B.item_name, SUM(actual_qty) as actual_qty,COALESCE(B.required_qty,0) as required_qty,B.docstatus,A.stock_uom AS uom FROM  `tabStock Ledger Entry` A LEFT JOIN (SELECT C.item_code, C.item_name,required_qty,B.docstatus FROM  `tabMasterial RQ` A  INNER JOIN (SELECT * FROM `tabMaterial RQ Main` WHERE DATE(transaction_date) = %s) B ON A.parent = B.name RIGHT JOIN `tabItem` C ON C.name = A.item_code) B ON A.item_code = B.item_code WHERE  warehouse = %s  GROUP BY  item_code, warehouse,B.item_name,required_qty,docstatus,A.stock_uom
+        SELECT C.item_code, C.item_name,SUM(actual_qty) AS actual_qty, COALESCE(required_qty,0) AS required_qty,COALESCE(A.docstatus,0)
+        AS docstatus FROM `tabItem` C INNER JOIN (
+        SELECT parent as item_code, 0 AS actual_qty FROM `tabItem Default` WHERE default_warehouse = %s UNION ALL
+        SELECT item_code,actual_qty FROM `tabStock Ledger Entry` WHERE  warehouse =  %s
+        ) B ON C.item_code = B.item_code
+        LEFT JOIN (SELECT A.item_code, required_qty,B.docstatus 
+        FROM  `tabMasterial RQ` A  INNER JOIN (SELECT docstatus,name FROM `tabMaterial RQ Main` WHERE DATE(transaction_date) = %s) B
+        ON A.parent = B.name ) A ON A.item_code = B.item_code GROUP BY  C.item_code, C.item_name,required_qty,A.docstatus ;
     """
 
     print("12")

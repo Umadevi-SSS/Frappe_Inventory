@@ -1,0 +1,100 @@
+{
+ "actions": [],
+ "autoname": "autoincrement",
+ "creation": "2024-07-27 16:40:39.556635",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "transaction_date",
+  "column_break_nlyy",
+  "warehouse",
+  "column_break_fbbw",
+  "fetch_data",
+  "section_break_freh",
+  "material_request",
+  "wo_status",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "material_request",
+   "fieldtype": "Table",
+   "label": "Material Request",
+   "options": "Masterial RQ"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Material RQ Main",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "fetch_data",
+   "fieldtype": "Button",
+   "label": "Fetch Data"
+  },
+  {
+   "fieldname": "warehouse",
+   "fieldtype": "Link",
+   "label": "Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "columns": 2,
+   "fieldname": "column_break_nlyy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_fbbw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_freh",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "wo_status",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "WO Status"
+  },
+  {
+   "fieldname": "transaction_date",
+   "fieldtype": "Date",
+   "label": "Transaction Date",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-07-29 17:44:24.882428",
+ "modified_by": "Administrator",
+ "module": "Requirement",
+ "name": "Material RQ Main",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

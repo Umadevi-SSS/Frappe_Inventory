@@ -1,0 +1,40 @@
+/* custom_app/public/css/custom_style.css */
+.form-section {
+    background-color: #f7f7f7;
+    /* Change background color of sections */
+    border-radius: 8px;
+    /* Add border radius to sections */
+    padding: 20px;
+    /* Add padding to sections */
+    margin-bottom: 20px;
+    /* Add space between sections */
+}
+.card-section {
+    border-bottom: 1px solid #ccc1c1 !important;
+}
+.frappe-control[data-fieldname="material_request"] .grid-row {
+    /* background-color: #878a8d;  */
+    border-bottom: 1px solid #b0a6a6 !important;
+    /* Change background color of grid rows */
+ }
+
+ .frappe-control[data-fieldname="fetch_data"] .btn-default {
+    /* margin-top: 14px; */
+    background-color: #487db2 !important;
+    padding: 10px !important;
+    color: white !important;
+ }
+
+ .frappe-control[data-fieldname="warehouse"] .form-control {
+    border: 1px solid gray !important;
+    height: 36px !important;
+ }
+
+
+.frappe-control[data-fieldname="material_request"] .grid-heading-row {
+    background-color: #487db2;
+    border-bottom: 1px solid #b0a6a6 !important;
+    /* Change background color of grid headers */
+    color: #fff;
+    /* Change color of grid header text */
+}

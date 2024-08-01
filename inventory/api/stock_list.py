@@ -9,6 +9,7 @@ def get_item_stock_report(warehouse,transaction_date):
     paraValues =[]
     paraValues.append(warehouse)
     paraValues.append(warehouse)
+    paraValues.append(warehouse)
     paraValues.append(transaction_date)
     query = """
         SELECT C.item_code, C.item_name,SUM(actual_qty) AS actual_qty, COALESCE(required_qty,0) AS required_qty,COALESCE(A.docstatus,0)
@@ -17,7 +18,7 @@ def get_item_stock_report(warehouse,transaction_date):
         SELECT item_code,actual_qty FROM `tabStock Ledger Entry` WHERE  warehouse =  %s
         ) B ON C.item_code = B.item_code
         LEFT JOIN (SELECT A.item_code, required_qty,B.docstatus 
-        FROM  `tabMasterial RQ` A  INNER JOIN (SELECT docstatus,name FROM `tabMaterial RQ Main` WHERE DATE(transaction_date) = %s) B
+        FROM  `tabMasterial RQ` A  INNER JOIN (SELECT docstatus,name FROM `tabMaterial RQ Main` WHERE warehouse =  %s AND DATE(transaction_date) = %s) B
         ON A.parent = B.name ) A ON A.item_code = B.item_code GROUP BY  C.item_code, C.item_name,required_qty,A.docstatus ;
     """
 

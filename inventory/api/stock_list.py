@@ -22,18 +22,16 @@ def get_item_stock_report(warehouse,transaction_date):
         ON A.parent = B.name ) A ON A.item_code = B.item_code GROUP BY  C.item_code, C.item_name,required_qty,A.docstatus,stock_uom ;
     """
 
-    print("12")
 
     stock_data = frappe.db.sql(query,paraValues, as_dict=True)
     
-    print(query)
+    
     return stock_data
 
 @frappe.whitelist()
 def create_bulk_work_orders(items,warehouse,name):
     work_order_names = []
-    print(items)
-    print(warehouse)
+   
     items = frappe.parse_json(items)
     for item in items:
         if (item.get('required_qty') > 0):
